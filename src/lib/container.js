@@ -106,7 +106,8 @@ export class Container extends Component {
   }
 
   renderTitleBar() {
-    const { className, text, closeText, closeButton, closeButtonClassName } = this.state;
+    const { className, closeText, closeButton, closeButtonClassName } = this.state;
+    const text = this.props.titleBar.text;
 
     const titleBarClass = {};
     if (className) {

@@ -1679,7 +1679,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _events = __webpack_require__(22);
+var _events = __webpack_require__(21);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1810,7 +1810,7 @@ var ReactCurrentOwner = __webpack_require__(6);
 var ReactComponentTreeHook = __webpack_require__(10);
 var ReactElement = __webpack_require__(3);
 
-var checkReactTypeSpec = __webpack_require__(32);
+var checkReactTypeSpec = __webpack_require__(31);
 
 var canDefineProperty = __webpack_require__(13);
 var getIteratorFn = __webpack_require__(14);
@@ -2058,13 +2058,9 @@ exports.Container = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(35);
+var _react = __webpack_require__(34);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__(21);
-
-var _classnames2 = _interopRequireDefault(_classnames);
 
 var _manager = __webpack_require__(15);
 
@@ -2216,11 +2212,11 @@ var Container = exports.Container = function (_Component) {
     value: function renderTitleBar() {
       var _state = this.state,
           className = _state.className,
-          text = _state.text,
           closeText = _state.closeText,
           closeButton = _state.closeButton,
           closeButtonClassName = _state.closeButtonClassName;
 
+      var text = this.props.titleBar.text;
 
       var titleBarClass = {};
       if (className) {
@@ -2229,7 +2225,7 @@ var Container = exports.Container = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: (0, _classnames2.default)('popupbox-titleBar', titleBarClass) },
+        { className: 'popupbox-titleBar ' + titleBarClass },
         _react2.default.createElement(
           'span',
           null,
@@ -2239,7 +2235,7 @@ var Container = exports.Container = function (_Component) {
           'button',
           {
             onClick: this.closeImagebox,
-            className: (0, _classnames2.default)('popupbox-btn--close', closeButtonClassName) },
+            className: 'popupbox-btn--close ' + closeButtonClassName },
           closeText
         )
       );
@@ -2260,11 +2256,11 @@ var Container = exports.Container = function (_Component) {
         {
           'data-title': titleBar.enable ? titleBar.position : null,
           style: { transition: this.state.transition },
-          className: (0, _classnames2.default)('popupbox', { 'is-active': show })
+          className: 'popupbox ' + (show && 'is-active')
         },
         _react2.default.createElement(
           'div',
-          { className: (0, _classnames2.default)('popupbox-wrapper', className) },
+          { className: 'popupbox-wrapper ' + className },
           titleBar.enable && this.renderTitleBar(),
           _react2.default.createElement(
             'div',
@@ -2305,61 +2301,6 @@ var PopupboxManager = exports.PopupboxManager = _manager2.default;
 
 /***/ }),
 /* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2016 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames () {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				classes.push(classNames.apply(null, arg));
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = classNames;
-	} else if (true) {
-		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
-			return classNames;
-		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-		window.classNames = classNames;
-	}
-}());
-
-
-/***/ }),
-/* 22 */
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -2667,7 +2608,7 @@ function isUndefined(arg) {
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2731,7 +2672,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2849,7 +2790,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2867,16 +2808,16 @@ module.exports = PooledClass;
 
 var _assign = __webpack_require__(5);
 
-var ReactChildren = __webpack_require__(26);
+var ReactChildren = __webpack_require__(25);
 var ReactComponent = __webpack_require__(9);
-var ReactPureComponent = __webpack_require__(30);
-var ReactClass = __webpack_require__(27);
-var ReactDOMFactories = __webpack_require__(28);
+var ReactPureComponent = __webpack_require__(29);
+var ReactClass = __webpack_require__(26);
+var ReactDOMFactories = __webpack_require__(27);
 var ReactElement = __webpack_require__(3);
-var ReactPropTypes = __webpack_require__(29);
-var ReactVersion = __webpack_require__(31);
+var ReactPropTypes = __webpack_require__(28);
+var ReactVersion = __webpack_require__(30);
 
-var onlyChild = __webpack_require__(33);
+var onlyChild = __webpack_require__(32);
 var warning = __webpack_require__(1);
 
 var createElement = ReactElement.createElement;
@@ -2944,7 +2885,7 @@ module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2960,11 +2901,11 @@ module.exports = React;
 
 
 
-var PooledClass = __webpack_require__(24);
+var PooledClass = __webpack_require__(23);
 var ReactElement = __webpack_require__(3);
 
 var emptyFunction = __webpack_require__(7);
-var traverseAllChildren = __webpack_require__(34);
+var traverseAllChildren = __webpack_require__(33);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -3140,7 +3081,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3863,7 +3804,7 @@ module.exports = ReactClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4039,7 +3980,7 @@ module.exports = ReactDOMFactories;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4479,7 +4420,7 @@ module.exports = ReactPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4526,7 +4467,7 @@ ReactPureComponent.prototype.isPureReactComponent = true;
 module.exports = ReactPureComponent;
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4545,7 +4486,7 @@ module.exports = ReactPureComponent;
 module.exports = '15.4.2';
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4638,7 +4579,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4682,7 +4623,7 @@ module.exports = onlyChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4705,7 +4646,7 @@ var REACT_ELEMENT_TYPE = __webpack_require__(16);
 
 var getIteratorFn = __webpack_require__(14);
 var invariant = __webpack_require__(2);
-var KeyEscapeUtils = __webpack_require__(23);
+var KeyEscapeUtils = __webpack_require__(22);
 var warning = __webpack_require__(1);
 
 var SEPARATOR = '.';
@@ -4864,13 +4805,13 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(25);
+module.exports = __webpack_require__(24);
 
 
 /***/ })
